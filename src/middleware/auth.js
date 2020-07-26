@@ -12,16 +12,17 @@ function verifyToken(req, res, next) {
     req.token = bearerToken;
     next();
   } else {
-    res.sendStatus(403);
+    res.sendStatus(403).json({ error: "invalid token" });
   }
 }
 
 async function checkToken(req, res, next) {
   try {
-    req.user = await jwt.verify(req.token, process.env.JWT_SECRET);
+    const userContainer = await jwt.verify(req.token, process.env.JWT_SECRET);
+    req.user = userContainer.user;
     next();
   } catch {
-    res.sendStatus(403);
+    res.sendStatus(403).json({ error: "authentication failed" });
   }
 }
 

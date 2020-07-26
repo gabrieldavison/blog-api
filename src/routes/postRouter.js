@@ -17,9 +17,19 @@ router.get("/:id", postController.getOnePost);
 router.get("/:id/comments", postController.getPostComments);
 
 //Edits a post
-router.put("/:id", postController.updatePost);
+router.put(
+  "/:id",
+  auth.verifyToken,
+  auth.checkToken,
+  postController.updatePost
+);
 
 //Deletes a post
-router.delete("/:id", postController.deletePost);
+router.delete(
+  "/:id",
+  auth.verifyToken,
+  auth.checkToken,
+  postController.deletePost
+);
 
 export default router;
