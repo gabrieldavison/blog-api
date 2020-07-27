@@ -6,7 +6,6 @@ import bodyParser from "body-parser";
 
 import userRouter from "./routes/userRouter";
 import postRouter from "./routes/postRouter";
-import commentRouter from "./routes/commentRouter";
 
 const app = express();
 
@@ -28,7 +27,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/user", userRouter);
 app.use("/post", postRouter);
-app.use("/comment", commentRouter);
 
 //Handles errors from routing
 app.use((error, req, res, next) => {

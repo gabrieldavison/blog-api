@@ -13,9 +13,6 @@ router.get("/", postController.getAllPost);
 //Gets a specific post
 router.get("/:id", postController.getOnePost);
 
-//Gets the comments for a specific post
-router.get("/:id/comments", postController.getPostComments);
-
 //Edits a post
 router.put(
   "/:id",
@@ -30,6 +27,33 @@ router.delete(
   auth.verifyToken,
   auth.checkToken,
   postController.deletePost
+);
+
+//Gets the comments for a specific post
+router.get("/:id/comments", postController.getPostComments);
+
+//Creates a new comment for a post
+router.post(
+  "/:id/comments",
+  auth.verifyToken,
+  auth.checkToken,
+  postController.createComment
+);
+
+//Updates a comment
+router.put(
+  "/:id/comments/:commentId",
+  auth.verifyToken,
+  auth.checkToken,
+  postController.updateComment
+);
+
+//Deletes a comment
+router.delete(
+  "/:id/comments/:commentId",
+  auth.verifyToken,
+  auth.checkToken,
+  postController.deleteComment
 );
 
 export default router;
