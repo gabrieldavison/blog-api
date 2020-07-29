@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Sets up router
 
 app.use("/user", userRouter);
-app.use("/post", postRouter);
+app.use("/posts", postRouter);
 
 //Handles errors from routing
 app.use((error, req, res, next) => {

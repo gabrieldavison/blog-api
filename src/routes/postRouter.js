@@ -10,12 +10,15 @@ router.post("/", auth.verifyToken, auth.checkToken, postController.createPost);
 //Gets all posts
 router.get("/", postController.getAllPost);
 
+//Gets most recent 10 posts
+router.get("/recent", postController.getMostRecent);
+
 //Gets a specific post
-router.get("/:id", postController.getOnePost);
+router.get("/:postId", postController.getOnePost);
 
 //Edits a post
 router.put(
-  "/:id",
+  "/:postId",
   auth.verifyToken,
   auth.checkToken,
   postController.updatePost
@@ -23,18 +26,18 @@ router.put(
 
 //Deletes a post
 router.delete(
-  "/:id",
+  "/:postId",
   auth.verifyToken,
   auth.checkToken,
   postController.deletePost
 );
 
 //Gets the comments for a specific post
-router.get("/:id/comments", postController.getPostComments);
+router.get("/:postId/comments", postController.getPostComments);
 
 //Creates a new comment for a post
 router.post(
-  "/:id/comments",
+  "/:postId/comments",
   auth.verifyToken,
   auth.checkToken,
   postController.createComment
