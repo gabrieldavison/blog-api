@@ -2,6 +2,7 @@ import User from "../models/userModel";
 import bcrypt from "bcryptjs";
 import passport from "passport";
 import jwt from "jsonwebtoken";
+import Post from "../models/postModel";
 
 async function register(req, res, next) {
   const user = await User.create({
@@ -32,8 +33,14 @@ async function login(req, res, next) {
   return res.json({ user, token });
 }
 
-function getUserPosts(req, res) {
-  res.send("get user posts");
+async function getUserPosts(req, res) {
+  const userObject = await User.find({ username: req.params.username }).exec();
+  const userId = userObject[0]._id;
+  const userPosts = await Post.find({ author: userId })
+    .sort({ timestamp: "desc" })
+    .exec();
+  res.send(userPosts);
+  res.json(userPosts);
 }
 
 export default { register, login, getUserPosts };

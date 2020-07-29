@@ -7,6 +7,6 @@ router.post("/register", userController.register);
 
 router.post("/login", userController.login);
 
-router.get("/:id", userController.getUserPosts);
+router.get("/:username", userController.getUserPosts);
 
 export default router;

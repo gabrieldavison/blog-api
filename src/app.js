@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 
 import userRouter from "./routes/userRouter";
 import postRouter from "./routes/postRouter";
+import createContent from "../createContent";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// createContent();
 //Sets up router
 
 app.use("/user", userRouter);
